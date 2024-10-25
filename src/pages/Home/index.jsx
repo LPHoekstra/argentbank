@@ -1,7 +1,8 @@
+import FeatureItem from "../../components/FeatureItem"
+import m from "./index.module.scss"
 import iconChat from "../../assets/img/icon-chat.png"
 import iconMoney from "../../assets/img/icon-money.png"
 import iconSecurity from "../../assets/img/icon-security.png"
-import m from "./index.module.scss"
 
 function Home() {
     return (
@@ -17,37 +18,26 @@ function Home() {
             </div>
             <section className={m.features}>
                 <h2 className="sr-only">Features</h2>
-                <div className={m.features__item}>
-                    <img src={iconChat} alt="Chat Icon" className={m.features__icon} />
-                    <h3 className={m.features__itemTitle}>You are our #1 priority</h3>
-                    <p>
-                        Need to talk to a representative? You can get in touch through our
-                        24/7 chat or through a phone call in less than 5 minutes.
-                    </p>
-                </div>
-                <div className={m.features__item}>
-                    <img
-                        src={iconMoney}
-                        alt="Money Icon"
-                        className={m.features__icon}
-                    />
-                    <h3 className={m.features__itemTitle}>More savings means higher rates</h3>
-                    <p>
-                        The more you save with us, the higher your interest rate will be!
-                    </p>
-                </div>
-                <div className={m.features__item}>
-                    <img
-                        src={iconSecurity}
-                        alt="Security Icon"
-                        className={m.features__icon}
-                    />
-                    <h3 className={m.features__itemTitle}>Security you can trust</h3>
-                    <p>
-                        We use top of the line encryption to make sure your data and money
-                        is always safe.
-                    </p>
-                </div>
+                <FeatureItem
+                    title="You are our #1 priority"
+                    icon={iconChat}
+                    iconAlt="Chat icon"
+                    content="Need to talk to a representative? You can get in touch through our
+                        24/7 chat or through a phone call in less than 5 minutes."
+                />
+                <FeatureItem
+                    title="More savings means higher rates"
+                    icon={iconMoney}
+                    iconAlt="Money Icon"
+                    content="The more you save with us, the higher your interest rate will be!"
+                />
+                <FeatureItem
+                    title="Security you can trust"
+                    icon={iconSecurity}
+                    iconAlt="Security icon"
+                    content="We use top of the line encryption to make sure your data and money
+                        is always safe."
+                />
             </section>
         </main>
     )
