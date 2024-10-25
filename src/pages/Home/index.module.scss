@@ -24,10 +24,10 @@
 
         @include smallScreen {
             position: absolute;
-        top: 50px;
-        right: 50px;
-        width: 300px;
-        margin: 2rem;
+            top: 50px;
+            right: 50px;
+            width: 300px;
+            margin: 2rem;
         }
     }
 
@@ -45,8 +45,42 @@
         margin-bottom: 0;
         font-size: 0.9rem;
 
-         @include smallScreen {
+        @include smallScreen {
             font-size: 1.2rem;
         }
+    }
+}
+
+.features {
+    display: flex;
+    flex-direction: column;
+
+    @include smallScreen {
+        flex-direction: row;
+    }
+
+    &__icon {
+        width: 100px;
+        border: 10px solid #00bc77;
+        border-radius: 50%;
+        padding: 1rem;
+    }
+
+    &__item {
+        flex: 1;
+        padding: 2.5rem;
+
+        p {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__itemTitle {
+        color: #222;
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        margin-top: 1rem;
     }
 }
