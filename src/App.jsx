@@ -3,8 +3,8 @@ import "./styles/base.scss";
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import Error from "./pages/Error"
-import Header from './containers/Header';
-import Footer from './containers/Footer';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import User from './pages/User';
 import ProtectedRoute from './components/ProtectedRoute';
 

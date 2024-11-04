@@ -1,12 +1,15 @@
 import { useState } from "react"
 import m from "./index.module.scss"
 import { useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
+import { connected } from "./authSlice"
 
 function SignIn() {
   const navigate = useNavigate()
   const [error, setError] = useState(null)
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
+  const dispatch = useDispatch()
 
   const handleSubmit = async (event) => {
     try {
@@ -22,7 +25,7 @@ function SignIn() {
 
       const response = await fetch("http://localhost:3001/api/v1/user/login", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: jsonData
       })
 
@@ -32,6 +35,7 @@ function SignIn() {
 
       const data = await response.json()
 
+      dispatch(connected())
       localStorage.setItem("token", data.body.token)
 
       navigate("/user")
@@ -50,11 +54,11 @@ function SignIn() {
         <form onSubmit={(event) => handleSubmit(event)}>
           <div className={m.inputWrapper}>
             <label htmlFor="username">Username</label>
-            <input type="text" id="username" autoComplete="email" onChange={(event) => setEmail(event.target.value)}/>
+            <input type="text" id="username" autoComplete="email" onChange={(event) => setEmail(event.target.value)} />
           </div>
           <div className={m.inputWrapper}>
             <label htmlFor="password">Password</label>
-            <input type="password" id="password" onChange={(event) => setPassword(event.target.value)}/>
+            <input type="password" id="password" onChange={(event) => setPassword(event.target.value)} />
           </div>
           <div className={m.inputRemember}>
             <input type="checkbox" id="remember-me" />
