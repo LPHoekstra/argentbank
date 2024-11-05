@@ -7,8 +7,10 @@ const authSlice = createSlice({
         isConnected: false,
     },
     reducers: {
-        connected: (state) => {
+        connected: (state, user, token) => {
             state.isConnected = true
+            state.user = user
+            localStorage.setItem("token", token)
         },
         notConnected: (state) => {
             state.isConnected = false

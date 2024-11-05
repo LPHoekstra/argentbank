@@ -3,6 +3,7 @@ import m from "./index.module.scss"
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { connected } from "./authSlice"
+import authAPI from "../../api/auth"
 
 function SignIn() {
   const navigate = useNavigate()
@@ -23,26 +24,15 @@ function SignIn() {
 
       const jsonData = JSON.stringify(formDataObject)
 
-      const response = await fetch("http://localhost:3001/api/v1/user/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: jsonData
-      })
+      const data = await authAPI.signin(jsonData)
 
-      if (!response.ok) {
-        throw new Error("Erreur au login")
-      }
-
-      const data = await response.json()
-
-      dispatch(connected())
-      localStorage.setItem("token", data.body.token)
+      dispatch(connected(email, data.body.token))
 
       navigate("/user")
     } catch (error) {
       console.error(error)
 
-      setError(error.message)
+      setError(error)
     }
   }
 
