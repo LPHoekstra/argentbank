@@ -32,7 +32,7 @@ function SignIn() {
       dispatch(connected(email))
       localStorage.setItem("token", data.body.token)
 
-      navigate("/user")
+      navigate("/profile")
     } catch (error) {
       console.error(error)
       setLoading(false)

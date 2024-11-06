@@ -3,7 +3,7 @@ import "./styles/base.scss";
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import Error from "./pages/Error"
-import User from './pages/User';
+import User from './pages/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
 import Header from './containers/Header';
 import Footer from './containers/Footer';
@@ -15,9 +15,9 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/signin' element={<SignIn />} />
+        <Route path='/login' element={<SignIn />} />
         <Route path='/logout' element={<Logout />} />
-        <Route path='/user' element={
+        <Route path='/profile' element={
           <ProtectedRoute>
             <User />
           </ProtectedRoute>

@@ -1,10 +1,13 @@
+import { useSelector } from "react-redux"
 import m from "./index.module.scss"
 
-function User() {
+function Profile() {
+    const user = useSelector((state) => state.user)
+
     return (
         <main className="main bg-dark">
             <div className={m.header}>
-                <h1>Welcome back<br />Tony Jarvis!</h1>
+                <h1>Welcome back<br />{user.firstName} {user.lastName}!</h1>
                 <button className={m.editButton}>Edit Name</button>
             </div>
             <h2 className="sr-only">Accounts</h2>
@@ -42,4 +45,4 @@ function User() {
     )
 }
 
-export default User
+export default Profile

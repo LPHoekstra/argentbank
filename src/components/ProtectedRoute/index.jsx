@@ -17,11 +17,14 @@ function ProtectedRoute({ children }) {
             const response = await userAPI.getProfile()
 
             const payload = {
+                email: response.body.email,
+                firstName: response.body.firstName,
+                lastName: response.body.lastName,
+                userName: response.body.userName,
                 id: response.body.id,
-                user: response.body.email
             }
-            dispatch(setUser(payload))
             dispatch(connected(response.body.email))
+            dispatch(setUser(payload))
 
             return true
         } catch (error) {
@@ -35,20 +38,20 @@ function ProtectedRoute({ children }) {
         const verifyTokenAndState = async () => {
             const token = localStorage.getItem("token")
 
-            if (!isConnected && token) {
+            if (token) {
                 const isValidToken = await tokenVerification()
 
                 if (!isValidToken) {
-                    navigate("/signin", { replace: true })
+                    navigate("/login", { replace: true })
                 }
             } else if (!token) {
-                navigate("/signin", { replace: true })
+                navigate("/login", { replace: true })
             }
         }
 
         verifyTokenAndState()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isConnected, navigate])
+    }, [navigate])
 
     // return a loading screen
     return isConnected ? children : <Loaders />
