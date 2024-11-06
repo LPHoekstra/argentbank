@@ -7,17 +7,17 @@ const authSlice = createSlice({
         isConnected: false,
     },
     reducers: {
-        connected: (state, user, token) => {
+        connected: (state, action) => {
             state.isConnected = true
-            state.user = user
-            localStorage.setItem("token", token)
+            state.user = action.payload
         },
-        notConnected: (state) => {
+        disconnected: (state) => {
             state.isConnected = false
+            state.user = null
         }
     },
 })
 
 
-export const { connected, notConnected } = authSlice.actions
+export const { connected, disconnected } = authSlice.actions
 export const authReducer = authSlice.reducer

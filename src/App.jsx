@@ -7,6 +7,7 @@ import User from './pages/User';
 import ProtectedRoute from './components/ProtectedRoute';
 import Header from './containers/Header';
 import Footer from './containers/Footer';
+import Logout from './pages/Logout';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/signin' element={<SignIn />} />
+        <Route path='/logout' element={<Logout />} />
         <Route path='/user' element={
           <ProtectedRoute>
             <User />

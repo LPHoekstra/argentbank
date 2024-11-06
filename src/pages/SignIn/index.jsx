@@ -1,20 +1,23 @@
 import { useState } from "react"
 import m from "./index.module.scss"
 import { useNavigate } from "react-router-dom"
-import { useDispatch } from "react-redux"
-import { connected } from "./authSlice"
-import authAPI from "../../api/auth"
+import { useDispatch, useSelector } from "react-redux"
+import { connected } from "../../redux/authSlice"
+import userAPI from "../../api/userAPI"
+import Loaders from "../../components/Loaders"
 
 function SignIn() {
   const navigate = useNavigate()
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(useSelector((state) => state.error.errorMsg))
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
+  const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()
 
   const handleSubmit = async (event) => {
     try {
       event.preventDefault()
+      setLoading(true)
 
       const formData = new FormData()
       formData.append("email", email)
@@ -24,15 +27,17 @@ function SignIn() {
 
       const jsonData = JSON.stringify(formDataObject)
 
-      const data = await authAPI.signin(jsonData)
+      const data = await userAPI.signin(jsonData)
 
-      dispatch(connected(email, data.body.token))
+      dispatch(connected(email))
+      localStorage.setItem("token", data.body.token)
 
       navigate("/user")
     } catch (error) {
       console.error(error)
+      setLoading(false)
 
-      setError(error)
+      setError(error.message)
     }
   }
 
@@ -55,8 +60,9 @@ function SignIn() {
             <label htmlFor="remember-me">Remember me</label>
           </div>
           <button type="submit" className={m.signIn__btn}>Sign In</button>
+          {loading ? <Loaders /> : null}
           {error ?
-            <span>{error}</span>
+            <span className="error-msg">{error}</span>
             :
             null
           }

@@ -2,7 +2,6 @@ import { Link } from "react-router-dom"
 import argentBankLogo from "../../assets/img/argentBankLogo.png"
 import m from "./index.module.scss";
 import { useSelector } from "react-redux";
-import HeaderLogStatus from "../../components/HeaderLogStatus"
 
 function Header() {
     const isConnected = useSelector((state) => state.auth.isConnected)
@@ -18,11 +17,10 @@ function Header() {
                 <h1 className="sr-only">Argent Bank</h1>
             </Link>
             <div>
-                {isConnected ?
-                    <HeaderLogStatus link="/logout" content="Logout"/>
-                    :
-                    <HeaderLogStatus link="/signin" content="Sign In"/>
-                }
+                <Link className={m.mainNav__item} to={isConnected ? "/logout" : "/signin"}>
+                    <i className="fa fa-user-circle"></i>
+                    {isConnected ? "Logout" : "Sign In"} 
+                </Link>
             </div>
         </nav>
     )
