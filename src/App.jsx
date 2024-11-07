@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import "./styles/base.scss";
+import "./styles/main.scss";
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import Error from "./pages/Error"
@@ -8,11 +8,16 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Header from './containers/Header';
 import Footer from './containers/Footer';
 import Logout from './pages/Logout';
+import { useSelector } from 'react-redux';
+import Loaders from './components/Loaders';
 
 function App() {
+  const isLoading = useSelector((state) => state.loaders.isLoading)
+
   return (
     <Router>
       <Header />
+      {isLoading ? <Loaders /> : null}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<SignIn />} />

@@ -1,46 +1,33 @@
 import { useSelector } from "react-redux"
 import m from "./index.module.scss"
+import { useState } from "react"
+import EditNameForm from "../../components/EditNameForm"
+import BankAccount from "../../components/BankAccount"
 
 function Profile() {
     const user = useSelector((state) => state.user)
+    const [formOpen, setFormOpen] = useState(false)
 
     return (
         <main className="main bg-dark">
             <div className={m.header}>
                 <h1>Welcome back<br />{user.firstName} {user.lastName}!</h1>
-                <button className={m.editButton}>Edit Name</button>
+                <button className={`button ${m.editButton}`} onClick={() => setFormOpen(true)}>Edit Name</button>
+                {formOpen ? <EditNameForm setFormOpen={setFormOpen} /> : null}
             </div>
             <h2 className="sr-only">Accounts</h2>
-            <section className={m.account}>
-                <div className={m.account__contentWrapper}>
-                    <h3 className={m.account__title}>Argent Bank Checking (x8349)</h3>
-                    <p className={m.account__amount}>$2,082.79</p>
-                    <p className={m.account__amount__description}>Available Balance</p>
-                </div>
-                <div className={`${m.account__contentWrapper} cta`}>
-                    <button className={m.transactionButton}>View transactions</button>
-                </div>
-            </section>
-            <section className={m.account}>
-                <div className={m.account__contentWrapper}>
-                    <h3 className={m.account__title}>Argent Bank Savings (x6712)</h3>
-                    <p className={m.account__amount}>$10,928.42</p>
-                    <p className={m.account__amount__description}>Available Balance</p>
-                </div>
-                <div className={`${m.account__contentWrapper} cta`}>
-                    <button className={m.transactionButton}>View transactions</button>
-                </div>
-            </section>
-            <section className={m.account}>
-                <div className={m.account__contentWrapper}>
-                    <h3 className={m.account__title}>Argent Bank Credit Card (x8349)</h3>
-                    <p className={m.account__amount}>$184.30</p>
-                    <p className={m.account__amount__description}>Current Balance</p>
-                </div>
-                <div className={`${m.account__contentWrapper} cta`}>
-                    <button className={m.transactionButton}>View transactions</button>
-                </div>
-            </section>
+            <BankAccount
+                title="Argent Bank Checking (x8349)"
+                amount="$2,082.79"
+                amountDescription="Available Balance" />
+            <BankAccount
+                title="Argent Bank Savings (x6712)"
+                amount="$10,928.42"
+                amountDescription="Available Balance" />
+            <BankAccount
+                title="Argent Bank Credit Card (x8349)"
+                amount="$184.30"
+                amountDescription="Current Balance" />
         </main>
     )
 }

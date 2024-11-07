@@ -17,9 +17,14 @@ function Header() {
                 <h1 className="sr-only">Argent Bank</h1>
             </Link>
             <div>
+                {isConnected ?
+                    <Link className={m.mainNav__item} to="/profile">Profile</Link>
+                    :
+                    null
+                }
                 <Link className={m.mainNav__item} to={isConnected ? "/logout" : "/login"}>
                     <i className="fa fa-user-circle"></i>
-                    {isConnected ? "Logout" : "Sign In"} 
+                    {isConnected ? "Logout" : "Sign In"}
                 </Link>
             </div>
         </nav>
