@@ -16,15 +16,8 @@ function ProtectedRoute({ children }) {
         try {
             const response = await userAPI.getProfile()
 
-            const payload = {
-                email: response.body.email,
-                firstName: response.body.firstName,
-                lastName: response.body.lastName,
-                userName: response.body.userName,
-                id: response.body.id,
-            }
             dispatch(connected(response.body.email))
-            dispatch(setUser(payload))
+            dispatch(setUser(response.body))
 
             return true
         } catch (error) {
@@ -49,6 +42,9 @@ function ProtectedRoute({ children }) {
             }
         }
 
+        if (isConnected) {
+            return
+        }
         verifyTokenAndState()
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [navigate])

@@ -6,10 +6,11 @@ import { connected } from "../../redux/authSlice"
 import userAPI from "../../api/userAPI"
 import InputWrapper from "../../components/InputWrapper"
 import { loading, notLoading } from "../../redux/loadersSlice"
+import { setError } from "../../redux/errorSlice"
 
 function SignIn() {
   const navigate = useNavigate()
-  const [error, setError] = useState(useSelector((state) => state.error.errorMsg))
+  const error = useSelector((state) => state.error.errorMsg)
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
   const dispatch = useDispatch()
@@ -19,13 +20,12 @@ function SignIn() {
       event.preventDefault()
       dispatch(loading())
 
-      const formData = new FormData()
-      formData.append("email", email)
-      formData.append("password", password)
+      const formObject = {
+        "email": email,
+        "password": password,
+      }
 
-      const formDataObject = Object.fromEntries(formData.entries())
-
-      const jsonData = JSON.stringify(formDataObject)
+      const jsonData = JSON.stringify(formObject)
 
       const data = await userAPI.signin(jsonData)
 
@@ -38,7 +38,7 @@ function SignIn() {
       console.error(error)
       dispatch(notLoading())
 
-      setError(error.message)
+      dispatch(setError(error.message))
     }
   }
 

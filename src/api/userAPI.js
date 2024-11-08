@@ -12,6 +12,12 @@ const userAPI = {
             method: "GET",
         })
     },
+    changeProfile: async (data) => {
+        return await apiClient("/user/profile", {
+            method: "PUT",
+            body: data
+        })
+    }
 }
 
 export default userAPI
