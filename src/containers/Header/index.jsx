@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import argentBankLogo from "../../assets/img/argentBankLogo.png"
+import argentBankLogo from "../../assets/img/argentBankLogo-opti.png"
 import m from "./index.module.scss";
 import { useSelector } from "react-redux";
 

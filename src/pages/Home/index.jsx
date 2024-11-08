@@ -1,8 +1,8 @@
 import FeatureItem from "../../components/FeatureItem"
 import m from "./index.module.scss"
-import iconChat from "../../assets/img/icon-chat.png"
-import iconMoney from "../../assets/img/icon-money.png"
-import iconSecurity from "../../assets/img/icon-security.png"
+import iconChat from "../../assets/img/icon-chat-opti.png"
+import iconMoney from "../../assets/img/icon-money-opti.png"
+import iconSecurity from "../../assets/img/icon-security-opti.png"
 
 function Home() {
     return (
