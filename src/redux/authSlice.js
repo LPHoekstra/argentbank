@@ -11,7 +11,7 @@ const authSlice = createSlice({
             state.isConnected = true
             state.user = action.payload
         },
-        disconnected: (state) => {
+        disconnect: (state) => {
             state.isConnected = false
             state.user = null
         }
@@ -19,5 +19,5 @@ const authSlice = createSlice({
 })
 
 
-export const { connected, disconnected } = authSlice.actions
+export const { connected, disconnect } = authSlice.actions
 export const authReducer = authSlice.reducer

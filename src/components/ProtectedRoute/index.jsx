@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import userAPI from "../../api/userAPI"
 import { setUser } from "../../redux/userSlice"
-import { connected } from "../../redux/authSlice"
+import { connected, disconnect } from "../../redux/authSlice"
 import { useEffect } from "react"
 import { setError } from "../../redux/errorSlice"
 import Loaders from "../Loaders"
@@ -34,6 +34,7 @@ function ProtectedRoute({ children }) {
                 return
             }
 
+            dispatch(disconnect())
             navigate("/login", { replace: true })
         }
 

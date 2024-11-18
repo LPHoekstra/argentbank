@@ -10,27 +10,31 @@ import Footer from './containers/Footer';
 import Logout from './pages/Logout';
 import { useSelector } from 'react-redux';
 import Loaders from './components/Loaders';
+import IsConnected from './components/IsConnected';
 
 function App() {
   const isLoading = useSelector((state) => state.loaders.isLoading)
 
   return (
-    <Router>
-      <Header />
+    <>
       {isLoading ? <Loaders /> : null}
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/login' element={<SignIn />} />
-        <Route path='/logout' element={<Logout />} />
-        <Route path='/profile' element={
-          <ProtectedRoute>
-            <User />
-          </ProtectedRoute>
-        } />
-        <Route path='*' element={<Error />} />
-      </Routes>
+      <IsConnected />
+      <Router>
+        <Header />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<SignIn />} />
+          <Route path='/logout' element={<Logout />} />
+          <Route path='/profile' element={
+            <ProtectedRoute>
+              <User />
+            </ProtectedRoute>} 
+          />
+          <Route path='*' element={<Error />} />
+        </Routes>
+      </Router>
       <Footer />
-    </Router>
+    </>
   );
 }
 

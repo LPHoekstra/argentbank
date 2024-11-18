@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux"
 import { removeUser } from "../../redux/userSlice"
-import { disconnected } from "../../redux/authSlice"
+import { disconnect } from "../../redux/authSlice"
 import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
 
@@ -10,7 +10,7 @@ function Logout() {
     
     useEffect(() => {
         dispatch(removeUser())
-        dispatch(disconnected())
+        dispatch(disconnect())
         localStorage.removeItem("token")
         
         navigate("/", {replace: true})
