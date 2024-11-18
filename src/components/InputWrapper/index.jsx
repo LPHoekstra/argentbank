@@ -5,7 +5,7 @@ function InputWrapper({ type, onChange, placeholder }) {
     const inputs = {
         email: {
             label: "Email",
-            type: "text",
+            type: "email",
             autoComplete: "email",
             id: "email"
         },
