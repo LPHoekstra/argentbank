@@ -8,49 +8,40 @@ import { setError } from "../../redux/errorSlice"
 import Loaders from "../Loaders"
 
 function ProtectedRoute({ children }) {
-    const isConnected = useSelector((state) => state.auth.isConnected)
+    const isUserData = useSelector((state) => state.user.id)
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const tokenVerification = async () => {
-        try {
-            const response = await userAPI.getProfile()
-
-            dispatch(connected(response.body.email))
-            dispatch(setUser(response.body))
-
-            return true
-        } catch (error) {
-            dispatch(setError(error.message))
-
-            return false
-        }
-    }
-
     useEffect(() => {
-        const verifyTokenAndState = async () => {
-            const token = localStorage.getItem("token")
+        const getProfile = async () => {
+            try {
+                const response = await userAPI.getProfile()
 
-            if (token) {
-                const isValidToken = await tokenVerification()
+                dispatch(connected(response.body.email))
+                dispatch(setUser(response.body))
 
-                if (!isValidToken) {
-                    navigate("/login", { replace: true })
-                }
-            } else if (!token) {
-                navigate("/login", { replace: true })
+                return true
+            } catch (error) {
+                dispatch(setError(error.message))
+                return false
             }
         }
 
-        if (isConnected) {
-            return
+        const verifyInformation = async () => {
+            const token = localStorage.getItem("token")
+
+            if (isUserData || (token && await getProfile())) {
+                return
+            }
+
+            navigate("/login", { replace: true })
         }
-        verifyTokenAndState()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [navigate])
+
+        verifyInformation()
+    }, [dispatch, isUserData, navigate])
 
     // return a loading screen
-    return isConnected ? children : <Loaders />
+    return isUserData ? children : <Loaders />
 }
 
 export default ProtectedRoute
