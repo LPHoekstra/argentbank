@@ -1,10 +1,5 @@
 @use "../../styles/mixin.scss" as *;
 
-.header {
-  color: #fff;
-  margin-bottom: 2rem;
-}
-
 .account {
     display: flex;
     justify-content: space-between;
@@ -41,8 +36,8 @@
     }
 
     &__contentWrapper {
-        width: 100%;
-        flex: 1;
+        // width: 100%;
+        // flex: 1;
 
         &.cta {
             @include smallScreen {
@@ -50,28 +45,15 @@
             }
         }
     }
-}
 
-.editButton {
-  border-color: #00bc77;
-  background-color: #00bc77;
-  color: #fff;
-  font-weight: bold;
-  padding: 10px;
-}
+    &__transactionButton {
+        display: block;
+        width: 100%;
+        font-size: 1.1rem;
+        margin-top: 1rem;
 
-.transactionButton {
-  display: block;
-  width: 100%;
-  padding: 8px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  margin-top: 1rem;
-  border-color: #00bc77;
-  background-color: #00bc77;
-  color: #fff;
-
-  @include smallScreen {
-        width: 200px;
+        @include smallScreen {
+            width: 200px;
+        }
     }
 }
