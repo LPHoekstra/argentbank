@@ -1,13 +1,48 @@
 import m from "./index.module.scss"
+import PropTypes from "prop-types"
 
-function InputWrapper({ type, id, onChange, autocomplete, text, placeholder }) {
+function InputWrapper({ type, onChange, placeholder }) {
+    const inputs = {
+        email: {
+            label: "Email",
+            type: "text",
+            autoComplete: "email",
+            id: "email"
+        },
+        password: {
+            label: "Password",
+            type: "password",
+            autoComplete: "current-password",
+            id: "password"
+        },
+        username: {
+            label: "Username",
+            type: "username",
+            autoComplete: "username",
+            id: "userName"
+        },
+    }
+
+    const inputProps = inputs[type]
 
     return (
         <div className={m.inputWrapper}>
-            <label htmlFor={id}>{text}</label>
-            <input type={type} id={id} autoComplete={autocomplete} placeholder={placeholder} onChange={(event) => onChange(event.target.value)} />
+            <label htmlFor={inputProps.id}>{inputProps.label}</label>
+            <input 
+                type={inputProps.type} 
+                id={inputProps.id} 
+                autoComplete={inputProps.autoComplete}
+                placeholder={placeholder || undefined}
+                onChange={(event) => onChange(event.target.value)} 
+            />
         </div>
     )
 }
 
 export default InputWrapper
+
+InputWrapper.propTypes = {
+    type: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    placeholder: PropTypes.string,
+}

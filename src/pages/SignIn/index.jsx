@@ -49,18 +49,12 @@ function SignIn() {
         <h1>Sign In</h1>
         <form onSubmit={(event) => handleSubmit(event)}>
           <InputWrapper
-            type="text"
-            id="username"
+            type="email"
             onChange={setEmail}
-            autocomplete="email"
-            text="Email"
           />
           <InputWrapper
             type="password"
-            id="password"
             onChange={setPassword}
-            autocomplete="current-password"
-            text="Password"
           />
           <div className={m.inputRemember}>
             <input type="checkbox" id="remember-me" />

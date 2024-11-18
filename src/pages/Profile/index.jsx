@@ -13,8 +13,10 @@ function Profile() {
         <main className="main bg-dark">
             <div className={m.header}>
                 <h1>Welcome back<br />{user.firstName} {user.lastName}!</h1>
-                <button className={`button ${m.editButton}`} onClick={() => setFormOpen(true)}>Edit Name</button>
-                {formOpen ? <EditUserNameForm setFormOpen={setFormOpen} setSuccessMsg={setSuccessMsg}/> : null}
+                {formOpen ? 
+                    <EditUserNameForm setFormOpen={setFormOpen} setSuccessMsg={setSuccessMsg} />
+                    :
+                    <button className={`button ${m.editButton}`} onClick={() => setFormOpen(true)}>Edit Name</button>}
                 {successMsg ? <div>{successMsg}</div> : null}
             </div>
             <h2 className="sr-only">Accounts</h2>

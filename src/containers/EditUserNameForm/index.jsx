@@ -42,10 +42,7 @@ function EditUserNameForm({ setFormOpen, setSuccessMsg }) {
         <form className={m.form} onSubmit={(event) => handleSubmit(event)}>
             <InputWrapper 
                 type="username"
-                id="userName"
                 onChange={setUserName}
-                autocomplete="none"
-                text="Username"
                 placeholder={currentUserName}
             />
             <div className={m.form__btnWrapper}>
