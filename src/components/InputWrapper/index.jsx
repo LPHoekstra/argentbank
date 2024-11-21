@@ -33,7 +33,7 @@ function InputWrapper({ type, onChange, placeholder }) {
                 id={inputProps.id} 
                 autoComplete={inputProps.autoComplete}
                 placeholder={placeholder || undefined}
-                onChange={(event) => onChange(event.target.value)} 
+                onChange={(event) => onChange(event.target)}
             />
         </div>
     )
