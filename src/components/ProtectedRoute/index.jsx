@@ -2,10 +2,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import userAPI from "../../api/userAPI"
 import { setUser } from "../../redux/userSlice"
-import { connected, disconnect } from "../../redux/authSlice"
 import { useEffect } from "react"
 import { setError } from "../../redux/errorSlice"
-import Loaders from "../Loaders"
+import { loading, notLoading } from "../../redux/loadersSlice"
+import Logout from "../../pages/Logout"
 
 function ProtectedRoute({ children }) {
     const isUserData = useSelector((state) => state.user.id)
@@ -17,7 +17,6 @@ function ProtectedRoute({ children }) {
             try {
                 const response = await userAPI.getProfile()
 
-                dispatch(connected(response.body.email))
                 dispatch(setUser(response.body))
 
                 return true
@@ -27,22 +26,31 @@ function ProtectedRoute({ children }) {
             }
         }
 
+        // verify if a token is in local storage and get profile data
+        // otherwise navigate the user to login page
         const verifyInformation = async () => {
             const token = localStorage.getItem("token")
 
-            if (isUserData || (token && await getProfile())) {
-                return
+            if (token) {
+                const isProfileLoaded = await getProfile()
+                if (isProfileLoaded) {
+                    dispatch(notLoading())
+                    return
+                }
             }
 
-            dispatch(disconnect())
-            navigate("/login", { replace: true })
+            dispatch(notLoading())
+            return <Logout redirection="/login"/>
         }
 
-        verifyInformation()
+        // if there is no information in the user state
+        if (!isUserData) {
+            dispatch(loading())
+            verifyInformation()
+        }
     }, [dispatch, isUserData, navigate])
 
-    // return a loading screen
-    return isUserData ? children : <Loaders />
+    return isUserData && children
 }
 
 export default ProtectedRoute

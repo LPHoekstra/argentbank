@@ -29,7 +29,7 @@ function SignIn() {
 
       const data = await userAPI.signin(jsonData)
 
-      dispatch(connected(email))
+      dispatch(connected())
       localStorage.setItem("token", data.body.token)
 
       dispatch(notLoading())

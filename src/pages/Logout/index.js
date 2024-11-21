@@ -3,8 +3,9 @@ import { removeUser } from "../../redux/userSlice"
 import { disconnect } from "../../redux/authSlice"
 import { useNavigate } from "react-router-dom"
 import { useEffect } from "react"
+import PropTypes from "prop-types"
 
-function Logout() {
+function Logout({ redirection }) {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     
@@ -13,8 +14,13 @@ function Logout() {
         dispatch(disconnect())
         localStorage.removeItem("token")
         
-        navigate("/", {replace: true})
-    }, [dispatch, navigate])
+        navigate(redirection, {replace: true})
+    }, [dispatch, navigate, redirection])
 }
 
 export default Logout
+
+Logout.propTypes = {
+    redirection: PropTypes.string.isRequired,
+}
+
