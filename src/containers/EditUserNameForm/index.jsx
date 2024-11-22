@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import userAPI from "../../api/userAPI"
 import { setUser } from "../../redux/userSlice"
 import FormHandler from "../../components/FormHandler"
+import m from "./index.module.scss"
 
 function EditUserNameForm({ setFormOpen, setSuccessMsg }) {
     const currentUserName = useSelector((state) => state.user.userName)
@@ -25,6 +26,12 @@ function EditUserNameForm({ setFormOpen, setSuccessMsg }) {
                 { text: "Save" },
                 { text: "Cancel", type: "button", onClick: () => setFormOpen(false) }
             ]}
+            additionalClass={
+                {
+                    form: m.form,
+                    btnWrapper: m.form__btnWrapper
+                }
+            }
         />
     )
 }

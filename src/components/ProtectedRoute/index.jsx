@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import userAPI from "../../api/userAPI"
 import { setUser } from "../../redux/userSlice"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { setError } from "../../redux/errorSlice"
 import { loading, notLoading } from "../../redux/loadersSlice"
 import Logout from "../../pages/Logout"
@@ -11,6 +11,7 @@ function ProtectedRoute({ children }) {
     const isUserData = useSelector((state) => state.user.id)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [logout, setLogout] = useState(false)
 
     useEffect(() => {
         const getProfile = async () => {
@@ -40,7 +41,7 @@ function ProtectedRoute({ children }) {
             }
 
             dispatch(notLoading())
-            return <Logout redirection="/login"/>
+            setLogout(true)
         }
 
         // if there is no information in the user state
@@ -50,6 +51,10 @@ function ProtectedRoute({ children }) {
         }
     }, [dispatch, isUserData, navigate])
 
+    if (logout) {
+        return <Logout redirection="/login" />
+    }
+    
     return isUserData && children
 }
 

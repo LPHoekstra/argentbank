@@ -33,6 +33,11 @@ function SignInForm() {
                     <label htmlFor="remember-me">Remember me</label>
                 </div>
             }
+            additionalClass={
+                {
+                    button: m.form__btn
+                }
+            }
         />
     )
 }
