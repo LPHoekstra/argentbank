@@ -9,7 +9,8 @@ function SignInForm() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const handleSubmit = async (jsonData) => {
+    const handleSubmit = async (data) => {
+            const jsonData = JSON.stringify(data)
             const response = await userAPI.signin(jsonData)
 
             dispatch(connected())

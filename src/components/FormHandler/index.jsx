@@ -45,8 +45,7 @@ function FormHandler({ field, buttons, submit, additionalContent, additionalClas
             event.preventDefault()
             dispatch(loading())
 
-            const jsonData = JSON.stringify(formData)
-            await submit(jsonData)
+            await submit(formData)
         } catch (error) {
             console.error(error)
             dispatch(setError(error.message))
@@ -59,12 +58,13 @@ function FormHandler({ field, buttons, submit, additionalContent, additionalClas
         <form onSubmit={(event) => handleSubmit(event)} 
             className={additionalClass.form}
         >
-            {field.map(({ type, placeholder }) => (
+            {field.map(({ type, placeholder, disabled }) => (
                 <InputWrapper 
                     key={type} 
                     type={type} 
                     onChange={(input) => handleChange(input)}
                     placeholder={placeholder}
+                    disabled={disabled}
                 />
             ))}
             {additionalContent && additionalContent}

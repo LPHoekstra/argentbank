@@ -6,10 +6,15 @@ import m from "./index.module.scss"
 
 function EditUserNameForm({ setFormOpen, setSuccessMsg }) {
     const currentUserName = useSelector((state) => state.user.userName)
+    const currentFirstName = useSelector((state) => state.user.firstName)
+    const currentLastName = useSelector((state) => state.user.lastName)
     const dispatch = useDispatch()
 
-    const handleSubmit = async (jsonData) => {
-        const response = await userAPI.changeProfile(jsonData)
+    const handleSubmit = async (data) => {   
+        const userName = {"userName": data.userName}
+        const userNameJson = JSON.stringify(userName)
+        
+        const response = await userAPI.changeProfile(userNameJson)
 
         dispatch(setUser(response.body))
         setFormOpen(false)
@@ -19,7 +24,9 @@ function EditUserNameForm({ setFormOpen, setSuccessMsg }) {
     return (
         <FormHandler
             field={[
-                { type: "username", placeholder: currentUserName }
+                { type: "username", placeholder: currentUserName },
+                { type: "firstname", placeholder: currentFirstName, disabled: true },
+                { type: "lastname", placeholder: currentLastName, disabled: true }
             ]}
             submit={handleSubmit}
             buttons={[

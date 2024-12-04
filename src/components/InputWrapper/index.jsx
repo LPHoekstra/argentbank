@@ -1,7 +1,7 @@
 import m from "./index.module.scss"
 import PropTypes from "prop-types"
 
-function InputWrapper({ type, onChange, placeholder }) {
+function InputWrapper({ type, onChange, placeholder, disabled }) {
     const inputs = {
         email: {
             label: "Email",
@@ -16,11 +16,23 @@ function InputWrapper({ type, onChange, placeholder }) {
             id: "password"
         },
         username: {
-            label: "Username",
+            label: "User name",
             type: "username",
             autoComplete: "username",
             id: "userName"
         },
+        firstname: {
+            label: "First name",
+            type: "firstname",
+            autoComplete: "firstname",
+            id: "firstName"
+        },
+        lastname: {
+            label: "Last name",
+            type: "lastname",
+            autoComplete: "lastname",
+            id: "lastName"
+        }
     }
 
     const inputProps = inputs[type]
@@ -34,6 +46,7 @@ function InputWrapper({ type, onChange, placeholder }) {
                 autoComplete={inputProps.autoComplete}
                 placeholder={placeholder || undefined}
                 onChange={(event) => onChange(event.target)}
+                disabled={disabled}
             />
         </div>
     )
