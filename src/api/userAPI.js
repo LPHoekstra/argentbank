@@ -17,6 +17,12 @@ const userAPI = {
             method: "PUT",
             body: data
         })
+    },
+    signUp: async (data) => {
+        return await apiClient("/user/signup", {
+            method: "POST",
+            body: data
+        })
     }
 }
 

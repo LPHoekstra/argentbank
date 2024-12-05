@@ -30,6 +30,7 @@ import PropTypes from "prop-types";
  * @returns {JSX.Element} A configurable and functional form.
  */
 function FormHandler({ field, buttons, submit, additionalContent, additionalClass }) {
+    // problem with additionalClass wich result in an error if the object is not passed in props
     const [formData, setFormData] = useState({})
     const error = useSelector((state) => state.error.errorMsg)
     const dispatch = useDispatch()
