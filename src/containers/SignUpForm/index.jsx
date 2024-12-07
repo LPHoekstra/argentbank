@@ -10,7 +10,7 @@ function SignUpForm() {
         const jsonData = JSON.stringify(data)
         await userAPI.signUp(jsonData)
 
-        navigate("/signin", { replace: true })
+        navigate("/login", { replace: true })
     }
 
     return (
