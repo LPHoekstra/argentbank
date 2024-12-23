@@ -8,7 +8,7 @@
     height: 300px;
     position: relative;
 
-    @include smallScreen {
+    @include largeScreen {
         height: 400px;
         background-position: 0% 33%;
     }
@@ -22,7 +22,7 @@
         text-align: left;
         margin: 0 auto;
 
-        @include smallScreen {
+        @include largeScreen {
             position: absolute;
             top: 50px;
             right: 50px;
@@ -36,7 +36,7 @@
         font-size: 1rem;
         margin: 0;
 
-        @include smallScreen {
+        @include largeScreen {
             font-size: 1.5rem;
         }
     }
@@ -46,7 +46,7 @@
         font-size: 0.9rem;
         margin-top: 1em;
 
-        @include smallScreen {
+        @include largeScreen {
             font-size: 1.2rem;
         }
     }
@@ -56,7 +56,7 @@
     display: flex;
     flex-direction: column;
 
-    @include smallScreen {
+    @include largeScreen {
         flex-direction: row;
     }
 }

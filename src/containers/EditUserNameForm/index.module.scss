@@ -1,6 +1,7 @@
 .form {
     margin: auto;
-    width: 18.75em;
+    max-width: 18.75em;
+    padding: 0 1rem;
 
     &__btnWrapper {
         display: flex;

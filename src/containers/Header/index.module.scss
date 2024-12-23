@@ -1,8 +1,15 @@
+@use "../../styles/mixin.scss" as *;
+
 .mainNav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px 20px;
+  padding: 0.313rem 0.625rem;
+  
+  @include largeScreen {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
 
   a {
     font-weight: bold;
@@ -13,10 +20,17 @@
     color: #42b983;
   }
 
+  &__linkContainers {
+    display: flex;
+    gap: 1rem;
+
+    @include largeScreen {
+      gap: 1.5rem;
+    }
+  }
+
   &__item {
     text-decoration: none;
-    margin-right: 0.5rem;
-    margin-left: 1rem;
 
     &:hover {
       text-decoration: underline;
@@ -32,9 +46,13 @@
     align-items: center;
   }
 
-  &__img {
+  &__logoImg {
     max-width: 100%;
-    width: 200px;
+    width: 10rem;
+
+    @include largeScreen {
+      width: 12.5rem;
+    }
   }
   
 }
