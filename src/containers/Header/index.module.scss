@@ -23,6 +23,9 @@
   &__linkContainers {
     display: flex;
     gap: 1rem;
+    align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     @include largeScreen {
       gap: 1.5rem;

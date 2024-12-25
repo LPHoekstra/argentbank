@@ -5,9 +5,7 @@ import FormHandler from "../../components/FormHandler"
 import m from "./index.module.scss"
 
 function EditUserNameForm({ setFormOpen, setSuccessMsg }) {
-    const currentUserName = useSelector((state) => state.user.userName)
-    const currentFirstName = useSelector((state) => state.user.firstName)
-    const currentLastName = useSelector((state) => state.user.lastName)
+    const user = useSelector((state) => state.user)
     const dispatch = useDispatch()
 
     const handleSubmit = async (data) => {   
@@ -24,9 +22,9 @@ function EditUserNameForm({ setFormOpen, setSuccessMsg }) {
     return (
         <FormHandler
             field={[
-                { type: "username", placeholder: currentUserName },
-                { type: "firstname", placeholder: currentFirstName, disabled: true },
-                { type: "lastname", placeholder: currentLastName, disabled: true }
+                { type: "username", placeholder: user.userName },
+                { type: "firstname", placeholder: user.firstName, disabled: true },
+                { type: "lastname", placeholder: user.lastName, disabled: true }
             ]}
             submit={handleSubmit}
             buttons={[

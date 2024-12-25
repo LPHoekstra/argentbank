@@ -10,23 +10,23 @@ function SignInForm() {
     const navigate = useNavigate()
 
     const handleSubmit = async (data) => {
-            const jsonData = JSON.stringify(data)
-            const response = await userAPI.signin(jsonData)
+        const jsonData = JSON.stringify(data)
+        const response = await userAPI.signin(jsonData)
 
-            dispatch(connected())
-            localStorage.setItem("token", response.body.token)
-            navigate("/profile", { replace: true })
+        dispatch(connected())
+        localStorage.setItem("token", response.body.token)
+        navigate("/profile", { replace: true })
     }
 
     return (
-        <FormHandler 
+        <FormHandler
             field={[
-                {type: "email"},
-                {type: "password"}
+                { type: "email" },
+                { type: "password" }
             ]}
             submit={handleSubmit}
             buttons={[
-                {text: "Sign In"}
+                { text: "Sign In" }
             ]}
             additionalContent={
                 <div className={m.inputRemember}>

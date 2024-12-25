@@ -24,13 +24,13 @@ function InputWrapper({ type, onChange, placeholder, disabled }) {
         firstname: {
             label: "First name",
             type: "firstname",
-            autoComplete: "firstname",
+            autoComplete: "given-name",
             id: "firstName"
         },
         lastname: {
             label: "Last name",
             type: "lastname",
-            autoComplete: "lastname",
+            autoComplete: "family-name",
             id: "lastName"
         }
     }

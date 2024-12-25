@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 function Header() {
     const isConnected = useSelector((state) => state.auth.isConnected)
+    const username = localStorage.getItem("userName")
 
     return (
         <nav className={m.mainNav}>
@@ -17,9 +18,13 @@ function Header() {
                 <h1 className="sr-only">Argent Bank</h1>
             </Link>
             <div className={m.mainNav__linkContainers}>
-                {!isConnected || <Link className={m.mainNav__item} to="/profile">Profile</Link>}
+                {isConnected &&
+                    <Link className={m.mainNav__item} to="/profile">
+                        <i className="fa fa-user-circle"></i>
+                        {username ? username : "Profile"}
+                    </Link>
+                }
                 <Link className={m.mainNav__item} to={isConnected ? "/logout" : "/login"}>
-                    <i className="fa fa-user-circle"></i>
                     {isConnected ? "Logout" : "Sign In"}
                 </Link>
             </div>

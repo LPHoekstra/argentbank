@@ -19,6 +19,7 @@ function ProtectedRoute({ children }) {
                 const response = await userAPI.getProfile()
 
                 dispatch(setUser(response.body))
+                localStorage.setItem("userName", response.body.userName)
 
                 return true
             } catch (error) {
