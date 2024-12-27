@@ -16,7 +16,7 @@ function EditUserNameForm({ setFormOpen, setSuccessMsg }) {
 
         dispatch(setUser(response.body))
         setFormOpen(false)
-        setSuccessMsg(response.message)
+        setSuccessMsg(true)
     }
 
     return (

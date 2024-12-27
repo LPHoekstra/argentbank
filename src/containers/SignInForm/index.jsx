@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { connected } from "../../redux/authSlice"
+import { connect } from "../../redux/authSlice"
 import { useNavigate } from "react-router-dom"
 import userAPI from "../../api/userAPI"
 import FormHandler from "../../components/FormHandler"
@@ -13,7 +13,7 @@ function SignInForm() {
         const jsonData = JSON.stringify(data)
         const response = await userAPI.signin(jsonData)
 
-        dispatch(connected(response.body.token))
+        dispatch(connect(response.body.token))
         navigate("/profile", { replace: true })
     }
 

@@ -48,7 +48,6 @@ function FormHandler({ field, buttons, submit, additionalContent, additionalClas
 
             await submit(formData)
         } catch (error) {
-            console.error(error)
             dispatch(setError(error.message))
         } finally {
             dispatch(notLoading())

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux"
-import { connected } from "../../redux/authSlice"
+import { connect } from "../../redux/authSlice"
 
 // if a token is in localStorage set the connected state
 function IsConnected() {
@@ -7,7 +7,7 @@ function IsConnected() {
     const token = localStorage.getItem("token")
 
     if (token) {
-        dispatch(connected())
+        dispatch(connect())
     }
 }
 
