@@ -14,30 +14,20 @@ function ProtectedRoute({ children }) {
     const [logout, setLogout] = useState(false)
 
     useEffect(() => {
-        const getProfile = async () => {
-            try {
-                const response = await userAPI.getProfile()
-
-                dispatch(setUser(response.body))
-                localStorage.setItem("userName", response.body.userName)
-
-                return true
-            } catch (error) {
-                dispatch(setError(error.message))
-                return false
-            }
-        }
-
         // verify if a token is in local storage and get profile data
         // otherwise navigate the user to login page
         const verifyInformation = async () => {
             const token = localStorage.getItem("token")
 
             if (token) {
-                const isProfileLoaded = await getProfile()
-                if (isProfileLoaded) {
+                try {
+                    const response = await userAPI.getProfile()
+                    
+                    dispatch(setUser(response.body))
                     dispatch(notLoading())
                     return
+                } catch (error){
+                    dispatch(setError(error.message))
                 }
             }
 

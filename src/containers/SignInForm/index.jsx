@@ -13,8 +13,7 @@ function SignInForm() {
         const jsonData = JSON.stringify(data)
         const response = await userAPI.signin(jsonData)
 
-        dispatch(connected())
-        localStorage.setItem("token", response.body.token)
+        dispatch(connected(response.body.token))
         navigate("/profile", { replace: true })
     }
 

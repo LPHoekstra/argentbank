@@ -16,6 +16,7 @@ const userSlice = createSlice({
             state.lastName = action.payload.lastName
             state.userName = action.payload.userName
             state.id = action.payload.id
+            localStorage.setItem("userName", action.payload.userName)
         },
         removeUser: (state) => {
             state.email = null
@@ -23,6 +24,7 @@ const userSlice = createSlice({
             state.lastName = null
             state.userName = null
             state.id = null
+            localStorage.removeItem("userName")
         }
     }
 })

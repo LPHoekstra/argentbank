@@ -12,8 +12,6 @@ function Logout({ redirection }) {
     useEffect(() => {
         dispatch(removeUser())
         dispatch(disconnect())
-        localStorage.removeItem("token")
-        localStorage.removeItem("userName")
         
         navigate(redirection, {replace: true})
     }, [dispatch, navigate, redirection])
