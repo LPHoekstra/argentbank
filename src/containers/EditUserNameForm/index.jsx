@@ -9,6 +9,10 @@ function EditUserNameForm({ setFormOpen, setSuccessMsg }) {
     const dispatch = useDispatch()
 
     const handleSubmit = async (data) => {   
+        if (!data.userName) {
+            throw new Error("Username is required")
+        }
+        
         const userName = {"userName": data.userName}
         const userNameJson = JSON.stringify(userName)
         

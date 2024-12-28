@@ -1,4 +1,4 @@
-const URL = "http://localhost:3001/api/v1"
+const URL = "http://192.168.25.87:3001/api/v1"
 
 /**
  * 

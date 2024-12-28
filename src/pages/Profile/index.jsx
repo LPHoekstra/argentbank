@@ -25,7 +25,7 @@ const bankAccoutData = [
 function Profile() {
     const user = useSelector((state) => state.user)
     const [isFormOpen, setIsFormOpen] = useState(false)
-    const [successMsg, setSuccessMsg] = useState(null)
+    const [successMsg, setSuccessMsg] = useState(false)
 
     return (
         <main className="main bg-dark">
@@ -36,7 +36,10 @@ function Profile() {
                     :
                     <button 
                         className={`button ${m.editButton}`} 
-                        onClick={() => setIsFormOpen(true)}>
+                        onClick={() => {
+                            setIsFormOpen(true) 
+                            successMsg && setSuccessMsg(false)
+                        }}>
                             Edit Name
                     </button>}
                 {successMsg && <div>User profile updated</div>}
