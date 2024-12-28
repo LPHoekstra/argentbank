@@ -3,6 +3,7 @@ import userAPI from "../../api/userAPI"
 import { setUser } from "../../redux/userSlice"
 import FormHandler from "../../components/FormHandler"
 import m from "./index.module.scss"
+import { removeError } from "../../redux/errorSlice"
 
 function EditUserNameForm({ setFormOpen, setSuccessMsg }) {
     const user = useSelector((state) => state.user)
@@ -12,13 +13,14 @@ function EditUserNameForm({ setFormOpen, setSuccessMsg }) {
         if (!data.userName) {
             throw new Error("Username is required")
         }
-        
+
         const userName = {"userName": data.userName}
         const userNameJson = JSON.stringify(userName)
         
         const response = await userAPI.changeProfile(userNameJson)
 
         dispatch(setUser(response.body))
+        dispatch(removeError())
         setFormOpen(false)
         setSuccessMsg(true)
     }

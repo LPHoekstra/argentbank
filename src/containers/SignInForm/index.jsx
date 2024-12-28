@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import userAPI from "../../api/userAPI"
 import FormHandler from "../../components/FormHandler"
 import m from "./index.module.scss"
+import { removeError } from "../../redux/errorSlice"
 
 function SignInForm() {
     const dispatch = useDispatch()
@@ -14,6 +15,7 @@ function SignInForm() {
         const response = await userAPI.signin(jsonData)
 
         dispatch(connect(response.body.token))
+        dispatch(removeError())
         navigate("/profile", { replace: true })
     }
 
