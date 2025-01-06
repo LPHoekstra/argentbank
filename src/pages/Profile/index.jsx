@@ -8,17 +8,17 @@ const bankAccoutData = [
     {
         title: "Argent Bank Checking (x8349)",
         amount: "$2,082.79",
-        amountDescription: "Available Balance"
+        description: "Available Balance"
     },
     {
         title: "Argent Bank Savings (x6712)",
         amount: "$10,928.42",
-        amountDescription: "Available Balance"
+        description: "Available Balance"
     },
     {
         title: "Argent Bank Checking (x8349)",
         amount: "$184.30",
-        amountDescription: "Current Balance"
+        description: "Current Balance"
     }
 ]
 
@@ -50,7 +50,7 @@ function Profile() {
                     key={`${index}-${account.amount}`}
                     title={account.title}
                     amount={account.amount}
-                    amountDescription={account.amountDescription} 
+                    description={account.description} 
                 />
             ))}
         </main>

@@ -14,11 +14,9 @@ function AppRoutes () {
           <Route path='/login' element={<SignIn />} />
           <Route path='/logout' element={<Logout redirection="/"/>} />
           <Route path="/signup" element={<Signup />} />
-          <Route path='/profile' element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>} 
-          />
+          <Route path='/profile' element={<ProtectedRoute />}>
+            <Route path='' element={<Profile />} />
+          </Route>
           <Route path='*' element={<Error />} />
         </Routes>
     )
