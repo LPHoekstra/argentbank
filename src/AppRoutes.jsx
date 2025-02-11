@@ -7,19 +7,20 @@ import Error from "./pages/Error"
 import Profile from "./pages/Profile"
 import Signup from "./pages/SignUp"
 
-function AppRoutes () {
-    return (
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<SignIn />} />
-          <Route path='/logout' element={<Logout redirection="/"/>} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path='/profile' element={<ProtectedRoute />}>
-            <Route path='' element={<Profile />} />
-          </Route>
-          <Route path='*' element={<Error />} />
-        </Routes>
-    )
+function AppRoutes() {
+  return (
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/login' element={<SignIn />} />
+      <Route path='/logout' element={<Logout redirection="/" />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path='/profile' element={<ProtectedRoute>
+          <Profile />
+        </ProtectedRoute>}>
+      </Route>
+      <Route path='*' element={<Error />} />
+    </Routes>
+  )
 }
 
 export default AppRoutes
