@@ -25,9 +25,12 @@ const userSlice = createSlice({
             state.userName = null
             state.id = null
             localStorage.removeItem("userName")
+        },
+        setUserName: (state, action) => {
+            state.userName = action.payload.userName
         }
     }
 })
 
-export const { setUser, removeUser } = userSlice.actions
+export const { setUser, removeUser, setUserName } = userSlice.actions
 export const userReducer = userSlice.reducer

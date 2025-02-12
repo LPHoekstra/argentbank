@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import userAPI from "../../api/userAPI"
-import { setUser } from "../../redux/userSlice"
+import { setUserName } from "../../redux/userSlice"
 import FormHandler from "../../components/FormHandler"
 import m from "./index.module.scss"
 import { removeError } from "../../redux/errorSlice"
@@ -19,7 +19,7 @@ function EditUserNameForm({ setFormOpen, setSuccessMsg }) {
         
         const response = await userAPI.changeProfile(userNameJson)
 
-        dispatch(setUser(response.body))
+        dispatch(setUserName(response.body))
         dispatch(removeError())
         setFormOpen(false)
         setSuccessMsg(true)
