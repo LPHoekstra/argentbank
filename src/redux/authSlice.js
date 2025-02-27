@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import userAPI from "../api/userAPI";
 
 const authSlice = createSlice({
     name: "auth",
@@ -12,6 +13,7 @@ const authSlice = createSlice({
         },
         disconnect: (state) => {
             state.isConnected = false
+            userAPI.logout()
             localStorage.removeItem("token")
             localStorage.removeItem("userName")
         }
